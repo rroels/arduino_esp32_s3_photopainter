@@ -53,9 +53,6 @@ When I tried to write custom Arduino-based firmware for this device, I found tha
 
 # Hardware Description
 
-> [!NOTE]
-> Arduino Code examples for the hardware described here can be found in the "Arduino Examples" section of this document. 
-
 Luckily for us, the hardware itself is well documented by the manufacturer:
 
 <img src="images/schematics.jpg" width="900" />
