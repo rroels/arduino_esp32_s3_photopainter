@@ -37,6 +37,8 @@
     * [Option 3: PlatormIO](#option-3-platformio) 
 * [References](#references)
 
+---
+
 # Introduction
 
 The Waveshare ESP32-S3 PhotoPainter 7.3inch is a digital picture frame with a Spectra E6 ePaper display, and ESP32-S3 microcontroller. It can be used as picture frame, but also calendar, dashboard, etc.
@@ -50,6 +52,8 @@ The official ESP-IDF framework for programming the ESP32 family of microcontroll
 (image source: official [Waveshare product page](https://www.waveshare.com/esp32-s3-photopainter.htm))
 
 When I tried to write custom Arduino-based firmware for this device, I found that the hardware documentation was lacking. Small details are scattered across repositories and forum threads, but I could not find a complete overview. I also figured out some details not described anywhere else. This repository describes the hardware in detail, allowing you to make full use of all the hardware components in your custom firmware. Some code examples are also provided for Arduino-ESP32. 
+
+---
 
 # Hardware Description & Code Examples
 
@@ -87,6 +91,7 @@ See official product pages for more info:
 * https://www.waveshare.com/esp32-s3-photopainter.htm
 * https://www.waveshare.com/wiki/ESP32-S3-PhotoPainter
 
+---
 
 ## Pinout Summary
 
@@ -102,6 +107,8 @@ See official product pages for more info:
 | Button "Boot" 	 | GPIO 0  | Active low | 
 | Button "Key" 	 | GPIO 4  | Active low | 
 
+---
+
 ## Microcontroller
 
 The microcontroller is a ESP32-S3-WROOM-1-N16R8. See datasheet for all details: https://documentation.espressif.com/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf
@@ -111,6 +118,8 @@ The version used in the PhotoPainter is the version with 8MB of PSRAM.
 I have not noticed any abnormal factory configuration or protection, so we can treat the microcontroller like any ESP32 S3 for hobby purposes. Any tutorials you find about using the ESP32 S3 also apply to this device. No special hardware is needed to flash firmware, it is flashable out of the box using USB. 
 
 See the section "Development Environment" in this document for concrete instructions on how to flash custom firmware to the PhotoPainter.
+
+---
 
 ## Buttons
 
@@ -167,6 +176,8 @@ The following is a  minimal example to illustrate how the hardware works. Howeve
 > }
 > ```
 > </details>
+
+---
 
 ## Power Management (AXP2101)
 
@@ -245,6 +256,8 @@ The following example uses XPowersLib to use the AXP2101: https://github.com/lew
 See the library's official examples for more advanced use:
 https://github.com/lewisxhe/XPowersLib/tree/master/examples
 
+---
+
 ## SD Card
 
 The SD card is accessible via SPI (CS=`GPIO38`, CLK=`GPIO39`, MISO=`GPIO40`, MOSI=`GPIO41`). Note that this is a different SPI channel than the one used for the display. 
@@ -282,6 +295,8 @@ The hardware configuration for the PhotoPainter looks like this:
 
 Using this configuration, any of the official SD examples on the library website can be used:
 https://docs.arduino.cc/learn/programming/sd-guide/
+
+---
 
 ## Temperature & Humidity Sensor (SHTC3)
 
@@ -330,6 +345,8 @@ The following example uses the Adafruit SHTC3 Library to read the sensor: https:
 > }
 > ```
 > </details>
+ 
+---
  
 ## RTC (PCF85063ATL)
 
@@ -417,11 +434,15 @@ See the library's official examples for more advanced usage:
 
 Use Google to find examples on how to obtain the current time via WiFi, before setting it in the RTC, e.g.: https://randomnerdtutorials.com/esp32-date-time-ntp-client-server-arduino/
 
+---
+
 ## ADC Audio Decoder (ES7210)
 
 Communication with this ADC is done via I2S and I2C (SDA=`GPIO47`, SCL=`GPIO48`), at address `0x40`.
 
 TODO
+
+---
 
 ## DAC Audio Encoder (ES8311)
 
@@ -430,6 +451,8 @@ https://github.com/pschatzmann/arduino-audio-driver/blob/main/examples/audiotool
 Communication with this DAC is done via I2S and I2C (SDA=`GPIO47`, SCL=`GPIO48`), at address `0x18`.
 
 TODO
+
+---
 
 ## PSRAM
 
@@ -471,6 +494,8 @@ PSRAM support is provided by the Arduino implementation for ESP32-S3. To use, si
 > }
 > ```
 > </details>
+
+---
 
 ## Display
 
@@ -539,6 +564,7 @@ GxEPD2 uses Adafruit_GFX internally (and exposes the same interface), so see bot
 * https://github.com/ZinggJM/GxEPD2
 * https://github.com/adafruit/Adafruit-gfx-library
 
+---
 
 # Development Environment
 
@@ -687,6 +713,8 @@ Using the `examples/platformio.ini`, you can use the typical PlatformIO commands
 Note: unlike with the arduino-cli method, it will not automatically install transitive dependencies (dependencies of dependencies) for you. You are responsible for adding these to the list yourself. To determine what you need, you can check the library manifest or make an educated guess based on the compilation errors. An even easier way is to use `arduino-cli` to get an overview of dependencies for a specific Arduino library. For instance, run `arduino-cli lib deps GxEPD2` to see the dependencies that GxEPD2 has. 
 
 Note2: in the example `platformio.ini` I have pinned the versions of the libraries and their dependencies, to ensure a working example. However, you might want to use more recent versions if any are available in the future. 
+
+---
 
 # References
 
