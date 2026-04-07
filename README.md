@@ -18,7 +18,7 @@
 ## Table of Contents
 
 * [Introduction](#introduction)
-* [Hardware Description](#hardware-description)
+* [Hardware Description & Code Examples](#hardware-description--code-examples)
     * [Pinout Summary](#pinout-summary)
     * [Microcontroller](#microcontroller)
     * [Buttons](#buttons)
@@ -51,7 +51,7 @@ The official ESP-IDF framework for programming the ESP32 family of microcontroll
 
 When I tried to write custom Arduino-based firmware for this device, I found that the hardware documentation was lacking. Small details are scattered across repositories and forum threads, but I could not find a complete overview. I also figured out some details not described anywhere else. This repository describes the hardware in detail, allowing you to make full use of all the hardware components in your custom firmware. Some code examples are also provided for Arduino-ESP32. 
 
-# Hardware Description
+# Hardware Description & Code Examples
 
 Luckily for us, the hardware itself is well documented by the manufacturer:
 
