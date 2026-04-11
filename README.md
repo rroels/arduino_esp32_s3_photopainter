@@ -148,9 +148,8 @@ It's a good idea to activate the internal pullup resistor, to avoid having the b
 
 The following is a  minimal example to illustrate how the hardware works. However, ideally a dedicated library is used to handle button input (including debouncing, interrupts, etc.). After flashing this example, check the serial monitor to see some output when pressing the buttons.
 
-> [!NOTE]  
-> <details>
-> <summary>📄 Arduino Example for PhotoPainter (click to expand)</summary>
+> [!NOTE] 
+> Arduino Example for ESP32-S3 PhotoPainter
 >
 > ```C
 > #define PIN_BTN_KEY     4
@@ -175,7 +174,6 @@ The following is a  minimal example to illustrate how the hardware works. Howeve
 >     delay(100);
 > }
 > ```
-> </details>
 
 ---
 
@@ -207,9 +205,8 @@ This PMU can generate interupts on `GPIO 21`, to notify the microcontroller of p
 
 The following example uses XPowersLib to use the AXP2101: https://github.com/lewisxhe/XPowersLib. In this example we enable voltage monitoring and LDO4 (power for ePaper circuitry). Don't forget to install the library via your development environment (Arduino IDE, Arduino CLI, PlatformIO, ...).
 
-> [!NOTE]  
-> <details>
-> <summary>📄 Arduino Example for PhotoPainter (click to expand)</summary>
+> [!NOTE] 
+> Arduino Example for ESP32-S3 PhotoPainter
 > 
 > ```C
 > 
@@ -251,7 +248,6 @@ The following example uses XPowersLib to use the AXP2101: https://github.com/lew
 >   delay(2000);
 > }
 > ```
-> </details>
 
 See the library's official examples for more advanced use:
 https://github.com/lewisxhe/XPowersLib/tree/master/examples
@@ -268,8 +264,7 @@ https://docs.arduino.cc/libraries/sd/
 The hardware configuration for the PhotoPainter looks like this:
 
 > [!NOTE] 
-> <details>
-> <summary>📄 Arduino Example for PhotoPainter (click to expand)</summary>
+> Arduino Example for ESP32-S3 PhotoPainter
 > 
 > ```C
 > #include <SPI.h>
@@ -291,7 +286,6 @@ The hardware configuration for the PhotoPainter looks like this:
 >   ...
 > }
 > ```
-> </details>
 
 Using this configuration, any of the official SD examples on the library website can be used:
 https://docs.arduino.cc/learn/programming/sd-guide/
@@ -309,8 +303,7 @@ Note that the temperature will often be a bit higher than the actual air tempera
 The following example uses the Adafruit SHTC3 Library to read the sensor: https://github.com/sparkfun/SparkFun_SHTC3_Arduino_Library. Don't forget to install the library via your development environment (Arduino IDE, Arduino CLI, PlatformIO, ...). Note that there many other libraries for this sensor. 
 
 > [!NOTE] 
-> <details>
-> <summary>📄 Arduino Example for PhotoPainter (click to expand)</summary>
+> Arduino Example for ESP32-S3 PhotoPainter
 > 
 > ```C
 > #include "Adafruit_SHTC3.h"
@@ -344,7 +337,6 @@ The following example uses the Adafruit SHTC3 Library to read the sensor: https:
 >   delay(1000);
 > }
 > ```
-> </details>
  
 ---
  
@@ -363,8 +355,7 @@ There are plenty of libraries for Arduino for the PCF85063:
 The following example uses SensorLib to use the RTC: https://github.com/lewisxhe/SensorLib. Don't forget to install the library via your development environment (Arduino IDE, Arduino CLI, PlatformIO, ...).
 
 > [!NOTE] 
-> <details>
-> <summary>📄 Arduino Example for PhotoPainter (click to expand)</summary>
+> Arduino Example for ESP32-S3 PhotoPainter
 > 
 > ```C
 > #include <SensorPCF85063.hpp>
@@ -425,7 +416,6 @@ The following example uses SensorLib to use the RTC: https://github.com/lewisxhe
 >     rtc.setDateTime(t);
 > }
 > ```
-> </details>
 
 See the library's official examples for more advanced usage:
 * https://github.com/lewisxhe/SensorLib/blob/master/examples/PCF85063_SimpleTime/PCF85063_SimpleTime.ino
@@ -464,8 +454,7 @@ PSRAM support is provided by the Arduino implementation for ESP32-S3. To use, si
 > Recent versions the ESP32 Arduino implementation will automatically use PSRAM for larger memory allocations. In that case the code below might not even be needed. 
 
 > [!NOTE] 
-> <details>
-> <summary>📄 Arduino Example for PhotoPainter (click to expand)</summary>
+> Arduino Example for ESP32-S3 PhotoPainter
 > 
 > ```C
 > byte* img_buffer;
@@ -493,7 +482,6 @@ PSRAM support is provided by the Arduino implementation for ESP32-S3. To use, si
 >   delay(2000);
 > }
 > ```
-> </details>
 
 ---
 
@@ -509,8 +497,7 @@ The excellent [GxEPD2](https://github.com/ZinggJM/GxEPD2) library has recently a
 The following example uses GxEPD2: https://github.com/ZinggJM/GxEPD2. Don't forget to install the library via your development environment (Arduino IDE, Arduino CLI, PlatformIO, ...).
 
 > [!NOTE] 
-> <details>
-> <summary>📄 Arduino Example for PhotoPainter (click to expand)</summary>
+> Arduino Example for ESP32-S3 PhotoPainter
 > 
 > ```C
 > #include <GxEPD2_7C.h>
@@ -558,7 +545,6 @@ The following example uses GxEPD2: https://github.com/ZinggJM/GxEPD2. Don't forg
 >   delay(1000);
 > }
 > ```
-> </details>
 
 GxEPD2 uses Adafruit_GFX internally (and exposes the same interface), so see both the GxEPD2 and Adafruit_GFX pages for more examples:
 * https://github.com/ZinggJM/GxEPD2
