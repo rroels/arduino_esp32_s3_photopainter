@@ -546,6 +546,47 @@ The following example uses GxEPD2: https://github.com/ZinggJM/GxEPD2. Don't forg
 > }
 > ```
 
+One issue with the example above, is that the GxEPD2 object will allocate a huge framebuffer in the background. 
+For the PhotoPainter display this takes up to 80% of available RAM, which is problematic if you also need WiFi and other RAM-demanding features. 
+
+The official GxEPD2 approach is to divide the display into "pages", and use paged drawing:
+
+```C
+// NOTE THE GxEPD2_730c_GDEP073E01::HEIGHT / 4 !!! 
+// this divides the display in 4 pages, so the framebuffer only takes 1/4th of the memory
+GxEPD2_7C<GxEPD2_730c_GDEP073E01, GxEPD2_730c_GDEP073E01::HEIGHT / 4> display(
+  GxEPD2_730c_GDEP073E01(PIN_CS, PIN_DC, PIN_RST, PIN_BUSY)
+);
+
+display.setFullWindow();
+display.firstPage();
+do
+{
+    // draw stuff using regular Adafruit GFX interface
+    display.fillScreen(GxEPD_WHITE);
+}
+while (display.nextPage());
+```
+
+However, paged drawing on the Spectra E6 does not seem to be well supported, and the display seems to go through a full 10-second refresh cycle for every page (takes 30+ seconds of flickering to refresh the entire screen).
+
+A better approach is to make sure GxEPD2 allocates a full framebuffer, but in PSRAM instead of regular RAM.
+There is no easy way to allocate the framebuffer ourselves, but we can make GxEPD2 allocate the framebuffer in PSRAM by using `heap_caps_malloc_extmem_enable()`.
+This instruction tells the system to automatically allocate memory in PSRAM (instead of regular RAM), for large MALLOC/CALLOC calls above a certain threshold.
+
+```C
+GxEPD2_7C<GxEPD2_730c_GDEP073E01, GxEPD2_730c_GDEP073E01::HEIGHT>* display;
+heap_caps_malloc_extmem_enable(10*1024); // everything larger than 10kb should be allocated in PSRAM instead of regular RAM
+display = new GxEPD2_7C<GxEPD2_730c_GDEP073E01, GxEPD2_730c_GDEP073E01::HEIGHT>(GxEPD2_730c_GDEP073E01(PIN_CS, PIN_DC, PIN_RST, PIN_BUSY));
+
+display->fillScreen(GxEPD_WHITE);
+display->display();
+```
+
+Note that `heap_caps_malloc_extmem_enable()` affects ALL memory allocations above the provided threshold (not just the ones made by GxEPD2). 
+However, that's not always a bad thing per se, if you're not optimising for performance. 
+
+
 GxEPD2 uses Adafruit_GFX internally (and exposes the same interface), so see both the GxEPD2 and Adafruit_GFX pages for more examples:
 * https://github.com/ZinggJM/GxEPD2
 * https://github.com/adafruit/Adafruit-gfx-library
