@@ -35,6 +35,7 @@
     * [Option 1: Arduino IDE](#option-1-arduino-ide)
     * [Option 2: Arduino CLI](#option-2-arduino-cli)
     * [Option 3: PlatormIO](#option-3-platformio) 
+* [Troubleshooting](#troubleshooting)
 * [References](#references)
 
 ---
@@ -742,6 +743,24 @@ Note: unlike with the arduino-cli method, it will not automatically install tran
 Note2: in the example `platformio.ini` I have pinned the versions of the libraries and their dependencies, to ensure a working example. However, you might want to use more recent versions if any are available in the future. 
 
 ---
+
+# Troubleshooting
+
+### The device is stuck in a reboot loop, or in deep sleep, and I can't flash new firmware
+
+Put it in "upload mode" by:
+
+* Unplug battery and usb, hold "boot" button while plugging in USB, keep holding for about 5 seconds. The device is now waiting for a firmware upload.
+
+OR
+
+* Press and hold the PWR button for 5 seconds, then hold down the BOOT button and click the PWR button to enter upload mode.
+
+### The display is very dark, white areas look grey, colours look faded and/or there is ghosting
+
+Make sure you enable LDO4 in the PMIC. Without this, the display will still work, but it will not receive enough power for a "proper" display refresh. 
+
+See the section on [power management](#power-management-axp2101).
 
 # References
 
