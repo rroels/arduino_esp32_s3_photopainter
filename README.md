@@ -26,6 +26,7 @@
     * [Buttons](#buttons)
     * [Power Management (AXP2101)](#power-management-axp2101)
     * [SD Card](#sd-card)
+    * [WiFi](#wifi)
     * [Temperature & Humidity Sensor (SHTC3)](#temperature--humidity-sensor-shtc3)
     * [RTC (PCF85063ATL)](#rtc-pcf85063atl)
     * [ADC Audio Decoder (ES7210)](#adc-audio-decoder-ES7210)
@@ -292,6 +293,18 @@ The hardware configuration for the PhotoPainter looks like this:
 
 Using this configuration, any of the official SD examples on the library website can be used:
 https://docs.arduino.cc/learn/programming/sd-guide/
+
+---
+
+## WiFi
+
+WiFi can be achieved through the standard Arduino WiFi library:
+
+* https://docs.arduino.cc/libraries/wifi/
+
+No special configuration is needed, no pins need to be set, simply call `WiFi.begin(ssid, password)` to get started. Any Arduino WiFi example you find will work out of the box. 
+
+Also see `File > Examples > Wifi101` in the Arduino IDE.
 
 ---
 
